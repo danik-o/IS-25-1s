@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+  <section class="card card-narrow">
+    <h1>Профиль</h1>
+
+    <dl class="info-list">
+      <dt>Email</dt>
+      <dd>{{ current_user.email }}</dd>
+      <dt>Дата регистрации</dt>
+      <dd>{{ current_user.created_at.strftime("%d.%m.%Y") }}</dd>
+    </dl>
+
+    <h2>Изменить имя</h2>
+    <form method="post" novalidate>
+      {{ form.hidden_tag() }}
+
+      {{ render_field(form.username) }}
+
+      {{ form.submit(class="btn") }}
+    </form>
+
+    <p class="muted">
+      <a href="{{ url_for('change_password.change_password_page') }}">Сменить пароль</a>
+    </p>
+  </section>
+{% endblock %}

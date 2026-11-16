@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+  <section class="card card-narrow">
+    <h1>Вход</h1>
+
+    <form method="post" novalidate>
+      {{ form.hidden_tag() }}
+
+      {{ render_field(form.email, autofocus=true) }}
+      {{ render_field(form.password) }}
+
+      <div class="form-check">
+        {{ form.remember() }} {{ form.remember.label }}
+      </div>
+
+      {{ form.submit(class="btn btn-block") }}
+    </form>
+
+    <p class="muted">
+      <a href="{{ url_for('reset_password.request_reset_page') }}">Забыли пароль?</a>
+    </p>
+    <p class="muted">Нет аккаунта? <a href="{{ url_for('register.register_page') }}">Зарегистрироваться</a></p>
+  </section>
+{% endblock %}

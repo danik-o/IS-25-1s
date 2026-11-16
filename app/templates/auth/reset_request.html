@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+
+{% block title %}Восстановление пароля{% endblock %}
+
+{% block content %}
+  <section class="card card-narrow">
+    <h1>Восстановление пароля</h1>
+    <p class="muted">Укажите email, с которым вы регистрировались.</p>
+
+    <form method="post" novalidate>
+      {{ form.hidden_tag() }}
+
+      {{ render_field(form.email, autofocus=true) }}
+
+      {{ form.submit(class="btn btn-block") }}
+    </form>
+
+    <p class="muted"><a href="{{ url_for('login.login_page') }}">Вернуться ко входу</a></p>
+  </section>
+{% endblock %}

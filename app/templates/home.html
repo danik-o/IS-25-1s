@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+  <section class="card">
+    {% if current_user.is_authenticated %}
+      <h1>Здравствуйте, {{ current_user.username }}!</h1>
+      <p>Вы вошли в аккаунт. Здесь будет главная страница вашего приложения.</p>
+      <p><a class="btn" href="{{ url_for('profile.profile_page') }}">Открыть профиль</a></p>
+    {% else %}
+      <h1>Добро пожаловать!</h1>
+      <p>Зарегистрируйтесь или войдите, чтобы продолжить.</p>
+      <p>
+        <a class="btn" href="{{ url_for('register.register_page') }}">Регистрация</a>
+        <a class="btn btn-light" href="{{ url_for('login.login_page') }}">Войти</a>
+      </p>
+    {% endif %}
+  </section>
+{% endblock %}
